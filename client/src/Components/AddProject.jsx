@@ -3,25 +3,25 @@ import axios from 'axios';
 
 const AddProject = (props) => {
     const {projectList, setProjectList} = props 
-    const [title, setTitle] = useState ("");
+    const [projectName, setProjectName] = useState ("");
     const [tasks, setTasks] = useState ("");
     const [description, setDescription] = useState ("");
     const [dueDate, setDueDate] = useState ("");
-    const [member, setMember] = useState ("");
+    const [users, setUsers] = useState ("");
 
     const handleSubmit = (e)=>{
         e.preventDefault();
 
-    axios.post("http://localhost:8000/api/project",{title, tasks, description, dueDate, member})
+    axios.post("http://localhost:8000/api/project",{projectName, tasks, description, dueDate, users})
         .then((res)=>{
             console.log(res);
             console.log(res.data);
             setProjectList([...projectList, res.data]);
-            setTitle("");
+            setProjectName("");
             setTasks("");
             setDescription("");
             setDueDate("");
-            setMember("");
+            setUsers("");
             })
         .catch((err)=>{
             console.log(err);
@@ -34,15 +34,16 @@ const AddProject = (props) => {
             <form action="" className="form col-md-4 mx-auto" onSubmit={handleSubmit}>
                 <div className='form-group mt-3'>
                     {
-                    title && title.length < 3 ? <p className='text-danger'>Title must be at least 2 characters</p>:""}
-                    <label htmlFor="" className='form-label'>Title: </label>
-                    <input type="text" name='title' className="form-control" onChange={(e)=>{setTitle(e.target.value)}}/>
+                    projectName && projectName.length < 3 ? <p className='text-danger'>Project Name must be at least 2 characters</p>:""}
+                    <label htmlFor="" className='form-label'>Project Name: </label>
+                    <input type="text" name='setProjectName' className="form-control" onChange={(e)=>{setProjectName
+                (e.target.value)}}/>
                 </div>
                 <div className='form-group mt-3'>
                     {
                     tasks && tasks.length < 3 ? <p className='text-danger'>Tasks must be at least 2 characters.</p>:""}
                     <label htmlFor="" className='form-label'>Tasks : </label>
-                    <input type="number" name="tasks" className="form-control" onChange={(e)=>{setTasks(e.target.value)}}  />
+                    <input type="text" name="tasks" className="form-control" onChange={(e)=>{setTasks(e.target.value)}}  />
                 </div>
                 <div className='form-group mt-3'>
                     {
@@ -60,10 +61,10 @@ const AddProject = (props) => {
                 </div>
                 <div className='form-group mt-3'>
                     {
-                    member && member.length < 2 ? <p className='text-danger'>Member is required.</p>:""
+                    users && users.length < 2 ? <p className='text-danger'>User is required.</p>:""
                     }
-                    <label htmlFor='' className='form-label'>Member(s): </label>
-                    <input type="text" name="member" id=""className='form-control' onChange={(e)=>{setMember(e.target.value)}} />
+                    <label htmlFor='' className='form-label'>User(s): </label>
+                    <input type="text" name="member" id=""className='form-control' onChange={(e)=>{setUsers(e.target.value)}} />
                 </div>
                 <br>
                 </br>

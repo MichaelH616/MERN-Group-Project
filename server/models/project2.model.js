@@ -15,7 +15,6 @@ const ProjectSchema = new mongoose.Schema({
     dueDate: {
         type: Date,
         required:[true, "Date is required"]
-
     },
     completedStatus: {
         type: Boolean,
