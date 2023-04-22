@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
-const AddProject = (props) => {
+const AddProject = (props, setLoggedIn) => {
     const {projectList, setProjectList} = props 
     const [title, setTitle] = useState ("");
     const [tasks, setTasks] = useState ("");
