@@ -53,7 +53,7 @@ const EditProject = (props) => {
                     dueDate ? <p className='text-danger'>Due Date is required.</p>:""
                     }
                     <label htmlFor='' className='form-label'> Due Date: </label>
-                    <input type="date" name="dueDate" id="" value={date} className='form-control' onChange={(e)=>{setDueDate(e.target.value)}} />
+                    <input type="date" name="dueDate" id="" value={dueDate} className='form-control' onChange={(e)=>{setDueDate(e.target.value)}} />
                 </div>
                 <div className='form-group mt-3'>
                     {
