@@ -12,7 +12,9 @@ const AddProject = (props) => {
     const handleSubmit = (e)=>{
         e.preventDefault();
 
-    axios.post("http://localhost:8000/api/project",{projectName, tasks, description, dueDate, users})
+
+    axios.post(("http://localhost:8000/api/project",{projectName, tasks, description, dueDate, users}),  {withCredentials:true})
+
         .then((res)=>{
             console.log(res);
             console.log(res.data);
@@ -68,7 +70,7 @@ const AddProject = (props) => {
                 </div>
                 <br>
                 </br>
-                <input className="submit-input" type="submit" value="Create" />
+                <input className="submit-input" type="submit" value="Create Project" />
             </form>
         </div>
     )
