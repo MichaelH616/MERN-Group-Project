@@ -1,8 +1,26 @@
 import React from 'react';
 import {  Link } from "react-router-dom";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
-const Navbar= () =>{
+const Navbar= (props) =>{
+    const{userInfo, setUserInfo} = props
+    const Navigate = useNavigate ()
+    const logout = () => {
+        axios.post('http://localhost:8000/api/users/logout', {}, {withCredentials: true})
+            .then(res => {
+                console.log(res);
+                setUserInfo({
+                    firstName:"",
+                    lastName:"",
+                    email:"",
+                    password:"",
+                }) 
+                Navigate("/");
+            })
+    }
+
     return (
         <nav className="nav">
             <a href='/' className='site-title'>Project Manager</a>
@@ -20,7 +38,7 @@ const Navbar= () =>{
                     <a href="/edit">Edit Project</a>
                 </li>
                 <li>
-                    <a href='/logout'>Logout</a>
+                <Link onClick={logout} className="nav-link mx-5">Logout</Link>
                 </li>
             </ul>
         </nav>
