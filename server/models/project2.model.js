@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const taskModel = require('./task.model');
-const userModel = require('./user.model')
+
+// const taskModel = require('./task.model');
+// const userModel = require('./user.model')
 
 const ProjectSchema = new mongoose.Schema({
     projectName: {
@@ -15,14 +16,13 @@ const ProjectSchema = new mongoose.Schema({
     dueDate: {
         type: Date,
         required:[true, "Date is required"]
-
     },
     completedStatus: {
         type: Boolean,
         required: [true, "Is the project completed?"]
     },
-    tasks: [taskModel],
-    users: [userModel]
+    // tasks: [taskModel],
+    // users: [userModel]
 })
 
-module.exports = mongoose.model("Project", ProjectSchema);
+module.exports = mongoose.model("Project2", ProjectSchema);

@@ -1,4 +1,4 @@
-const Project = require("../models/project.model");
+const Project = require("../models/project2.model");
 
 module.exports.createNewProject = (req, res) => {
     Project.create(req.body)
