@@ -31,7 +31,9 @@ module.exports = {
                     const userToken = jwt.sign({_id:user.id}, secret, {expiresIn: "1d"});
                     res.cookie("usertoken", userToken, {
                         httpOnly: true
-                    }).json({message: "success", user: user});
+                    }).json({message: "success", user: {
+                        _id: user.id,
+                    }});
                 } else {
                     res.status(400).json({message: "Invalid login attempt"});
                 }

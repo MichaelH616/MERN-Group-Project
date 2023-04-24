@@ -1,6 +1,6 @@
 import React from "react";
 
-const Dashboard = (props) => {
+const Dashboard = (props, {userId}) => {
     return (
         <div>
             <table className="table table-bordered">

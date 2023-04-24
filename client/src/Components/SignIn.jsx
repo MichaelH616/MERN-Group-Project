@@ -2,7 +2,7 @@ import React , {useState} from 'react'
 import axios from 'axios'
 import {Link, useNavigate} from 'react-router-dom'
 
-const SignIn = () => {
+const SignIn = ({setUserId}) => {
 
     const navigate = useNavigate();
 
@@ -13,13 +13,13 @@ const SignIn = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/users/login', userInfo, {withCredentials:true})
-        .then(res => {
-            console.log(res)            
-            // setLoggedIn(true);
-            navigate("/projects")
-        })
-        .catch(err => console.log(err))
+        axios.post('http://localhost:8000/api/users/login', userInfo, { withCredentials: true })
+            .then(res => {
+                console.log(res)
+                // setLoggedIn(true);
+                navigate("/projects")
+            })
+            .catch(err => console.log(err))
 
     } 
 

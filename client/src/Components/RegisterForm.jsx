@@ -8,7 +8,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
 
-const RegisterForm = () => {
+const RegisterForm = ({setUserId}) => {
 
     const userRef = useRef();
     const errRef = useRef();
