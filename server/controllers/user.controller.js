@@ -15,7 +15,9 @@ module.exports = {
                 const userToken = jwt.sign({_id:newUser.id}, secret, {expiresIn: "1d"});
                 res.cookie("usertoken", userToken, {
                     httpOnly: true
-                }).json({message: "success", user: newUser});
+                }).json({message: "success", user: {
+                    _id: user.id,
+                }});
             }
         } catch(err) {
             console.log(err);
