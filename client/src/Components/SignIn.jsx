@@ -16,6 +16,9 @@ const SignIn = ({setUserId}) => {
         e.preventDefault();
         axios.post('http://localhost:8000/api/users/login', userInfo, { withCredentials: true })
             .then(res => {
+                const userId = res.data.user._id;
+                setUserId = userId
+                console.log(userId)
                 console.log(res)
                 // setLoggedIn(true);
                 navigate("/projects")
