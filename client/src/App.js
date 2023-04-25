@@ -6,14 +6,16 @@ import RegisterForm from './Components/RegisterForm';
 import SignIn from './Components/SignIn';
 
 function App() {
+
+  const[userId, setUserId] = useState(null);
   
   return (
     <div>
       <Routes>
-        <Route path="/projects" element={<Dashboard/>} />
-        <Route path="/project" element={<AddProject/>} />
-        <Route path ="/" default element={<RegisterForm/>}/>
-        <Route path = "/signin" element = {<SignIn/>}/>
+      <Route path="/projects" element={<Dashboard userId={userId}/>} />
+        <Route path="/project" element={<AddProject userId={userId}/>} />
+        <Route path ="/" default element={<RegisterForm setUserId={setUserId}/>}/>
+        <Route path = "/signin" element = {<SignIn setUserId={setUserId}/>}/>
         <Route path="*" element={<h1>404 - Page Not Found</h1>}/>
       </Routes>
     </div>

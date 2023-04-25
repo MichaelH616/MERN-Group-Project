@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import background from '../images/pexels-fauxels-3183183.jpg'
 
-const SignIn = () => {
+const SignIn = ({setUserId}) => {
 
     const navigate = useNavigate();
 
@@ -16,6 +16,9 @@ const SignIn = () => {
         e.preventDefault();
         axios.post('http://localhost:8000/api/users/login', userInfo, { withCredentials: true })
             .then(res => {
+                const userId = res.data.user._id;
+                setUserId = userId
+                console.log(userId)
                 console.log(res)
                 // setLoggedIn(true);
                 navigate("/projects")
