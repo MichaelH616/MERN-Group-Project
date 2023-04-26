@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const Dashboard = (props) => {
     console.log(props)
@@ -28,6 +29,7 @@ const Dashboard = (props) => {
     console.log(projectList)
     return (
     <div>
+        <Navbar/>
         <table className="table table-bordered">
         <thead>
             <tr>
@@ -42,15 +44,17 @@ const Dashboard = (props) => {
         <tbody>
             {
             projectList.map((project, index) => {
+                const date = new Date(project.dueDate);
+                const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
                 return ( 
                     <tr key={index}>
                     <td>{project.projectName}</td>
                     <td>{project.tasks}</td>
                     {/* <td>{project.user.firstName.join(", ")}</td> */}
-                    <td>{project.dueDate}</td>
-                    <td>{project.completed ? "True" : "False"}</td>
+                    <td>{formattedDate}</td>
+                    <td>{project.completedStatus ? 'True':'False'}</td>
                     <td> 
-                    <button className="btn btn-primary"><Link to={`projects/${project._id}`}>Edit</Link></button> 
+                    <button className="btn btn-primary"><Link to={`/project/${project._id}`}>Edit</Link></button> 
                     <button className="btn btn-danger">View</button> 
                     </td>
                 </tr> )

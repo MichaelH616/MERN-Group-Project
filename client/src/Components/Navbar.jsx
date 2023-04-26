@@ -35,9 +35,6 @@ const Navbar= (props) =>{
                     <a href="/view">View All Projects</a>
                 </li>
                 <li>
-                    <a href="/edit">Edit Project</a>
-                </li>
-                <li>
                 <Link onClick={logout} className="nav-link mx-5">Logout</Link>
                 </li>
             </ul>
