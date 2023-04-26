@@ -17,6 +17,7 @@ const EditProject = () => {
     const [projectTaskError, setProjectTaskError] = useState('');
     const [projectDescriptionError, setProjectDescriptionError] = useState('');
     const [projectDateError, setProjectDateError] = useState('');
+    const [completedStatus, setCompletedStatus] = useState(false);
     const navigate = useNavigate();
 
     const { id } = useParams();
@@ -26,22 +27,31 @@ const EditProject = () => {
     const day = String(date.getDate()).padStart(2, 0);
     const formattedDate = `${date.getFullYear()}-${month}-${day}`;
 
-    const handleProjectName = (e) => {
-        e.target.value.length < 1 ?
-        setProjectNameError('Project name must be at least 3 characters') :
+    const badError = (e, msg) => {
+        setProjectNameError(msg) 
         setProjectList({ ...projectList, [e.target.name]: e.target.value })
     }
 
+    const goodError = (e) => {
+        setProjectNameError("")
+        setProjectList({ ...projectList, [e.target.name]: e.target.value })
+    }
+    const handleProjectName = (e) => {
+        e.target.value.length < 3 ?
+        badError(e, 'Project name must be at least 3 characters'): 
+        goodError(e)
+    }
+
     const handleProjectTask = (e) => {
-        e.target.value.length < 1 ?
-            setProjectTaskError('Tasks must be at least 3 characters') : 
-            setProjectList({ ...projectList, [e.target.name]: e.target.value })
+        e.target.value.length < 3 ?
+        badError(e, 'Task name must be at least 3 characters'): 
+        goodError(e)
     }
 
     const handleProjectDescription = (e) => {
         e.target.value.length < 3 ?
-            setProjectDescriptionError('Description must be at least 3 characters') :
-            setProjectList({ ...projectList, [e.target.name]: e.target.value })
+        badError(e, 'Description must be at least 3 characters'): 
+        goodError(e)
     }
 
     const handleProjectDate = (e) => {
@@ -67,6 +77,18 @@ const EditProject = () => {
         }
 
     }
+
+    const handleProjectStatus = (e) => {
+        console.log(e.target.value);
+        console.log(e.target.name)
+        if(e.target.name === 'completedStatus') {
+            setCompletedStatus(!completedStatus)
+        } else {
+            setCompletedStatus(completedStatus)
+        }
+        console.log(completedStatus)
+    }
+
 
     useEffect(() => {
         axios.get((`http://localhost:8000/api/project/${id}`), { withCredentials: true })
@@ -108,6 +130,10 @@ const EditProject = () => {
                     }
                     <label htmlFor='' className='form-label'> Due Date: </label>
                     <input type="date" name="dueDate" id="" value={formattedDate} className='form-control' min={new Date().toISOString().split('T')[0]} onChange={handleProjectDate} />
+                </div>
+                <div className='form-group mt-3'>
+                    <label htmlFor="" className="form-label">Completed?</label>
+                    <input type="checkbox" name="completedStatus" value={completedStatus} onChange={handleProjectStatus}></input>
                 </div>
                 {/* <div className='form-group mt-3'>
                 <select name="user" className='form-control' onChange={(e) => { setSelectedOption([e.target.value]) }} >

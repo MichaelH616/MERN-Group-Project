@@ -26,6 +26,18 @@ const Dashboard = (props) => {
         });
     }, []);
 
+    const removeFromDOM = id => {
+        axios.delete(`http://localhost:8000/api/projects/${id}`)
+            .then((res) => {
+                console.log(res.data)
+                setProjectList(projectList.filter(project => project._id !== id));
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+
+    }
+
     console.log(projectList)
     return (
     <div>
@@ -35,7 +47,6 @@ const Dashboard = (props) => {
             <tr>
             <th scope="col">Project Name</th>
             <th scope="col">Tasks</th>
-            <th scope="col">Member(s)</th>
             <th scope="col">Due Date</th>
             <th scope="col">Completed</th>
             <th scope="col">Actions</th>
@@ -50,12 +61,12 @@ const Dashboard = (props) => {
                     <tr key={index}>
                     <td>{project.projectName}</td>
                     <td>{project.tasks}</td>
-                    {/* <td>{project.user.firstName.join(", ")}</td> */}
                     <td>{formattedDate}</td>
                     <td>{project.completedStatus ? 'True':'False'}</td>
                     <td> 
                     <button className="btn btn-primary"><Link to={`/project/${project._id}`}>Edit</Link></button> 
-                    <button className="btn btn-danger">View</button> 
+                    <button className="btn btn-info">View</button>
+                    <button className="btn btn-danger" onClick={(e)=>{removeFromDOM(project._id)}}>Delete</button>
                     </td>
                 </tr> )
             })
