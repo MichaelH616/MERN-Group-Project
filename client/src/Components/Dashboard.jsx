@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import Navbar from "./Navbar";
+import background from '../images/pexels-ylanite-koppens-796602.jpg'
 
 const Dashboard = (props) => {
     console.log(props)
@@ -44,8 +45,8 @@ const Dashboard = (props) => {
     return (
     <div>
         <Navbar/>
-        <div className='container'>
-        <table className="table table-bordered my-4">
+        <div className="container-fluid vh-100" style={{ backgroundImage: `url(${background})`, backgroundSize: "cover" }}>
+        <table className="table table-hover table-striped">
         <thead>
             <tr>
             <th scope="col">Project Name</th>
@@ -67,7 +68,8 @@ const Dashboard = (props) => {
                     <td>{formattedDate}</td>
                     <td>{project.completedStatus ? 'True':'False'}</td>
                     <td> 
-                    <button className="btn btn-primary"><Link to={`/project/${project._id}`}>Edit</Link></button> 
+
+                    <button className="btn btn-warning"><Link to={`/project/${project._id}`}>Edit</Link></button> 
                     <button className="btn btn-info"><Link to={`/projects/${project._id}`}>View</Link></button>
                     <button className="btn btn-danger" onClick={(e)=>{removeFromDOM(project._id)}}>Delete</button>
                     </td>
