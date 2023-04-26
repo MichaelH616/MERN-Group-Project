@@ -9,7 +9,7 @@ const Dashboard = (props) => {
     const { userId } = useParams();
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/projects`)
+        axios.get((`http://localhost:8000/api/projects`), {withCredentials:true})
         .then((res) => {
             console.log(res.data.Project);
 
@@ -42,7 +42,8 @@ const Dashboard = (props) => {
     return (
     <div>
         <Navbar/>
-        <table className="table table-bordered">
+        <div className='container'>
+        <table className="table table-bordered my-4">
         <thead>
             <tr>
             <th scope="col">Project Name</th>
@@ -73,6 +74,7 @@ const Dashboard = (props) => {
             }
         </tbody>
         </table>
+        </div>
     </div>
     );
 };
