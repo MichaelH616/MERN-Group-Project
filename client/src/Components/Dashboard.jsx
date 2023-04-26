@@ -25,6 +25,8 @@ const Dashboard = (props) => {
         console.log(err);
         });
     }, []);
+    
+
 
     const removeFromDOM = id => {
         axios.delete(`http://localhost:8000/api/projects/${id}`)
@@ -65,7 +67,7 @@ const Dashboard = (props) => {
                     <td>{project.completedStatus ? 'True':'False'}</td>
                     <td> 
                     <button className="btn btn-primary"><Link to={`/project/${project._id}`}>Edit</Link></button> 
-                    <button className="btn btn-info">View</button>
+                    <button className="btn btn-info"><Link to={`/projects/${project._id}`}>View</Link></button>
                     <button className="btn btn-danger" onClick={(e)=>{removeFromDOM(project._id)}}>Delete</button>
                     </td>
                 </tr> )
