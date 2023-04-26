@@ -21,7 +21,7 @@ module.exports.findAllProjects = ( req, res) => {
 module.exports.findOneProject = (req, res) => {
     Project.findOne({ _id: req.params.id })
         .then(oneProject => {
-            res.json({ Project: oneProject })
+            res.json(oneProject)
         })
         .catch((err) => {
             res.json({ message: 'Something went wrong', error: err })
