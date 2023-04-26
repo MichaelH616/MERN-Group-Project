@@ -100,6 +100,8 @@ const RegisterForm = ({setUserId}) => {
           alert(errorMessage);
         } else {
 
+          const userId = res.data.user._id;
+          setUserId = userId
           setPwd("");
           setFirstName("");
           setLastName("");
