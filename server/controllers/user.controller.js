@@ -61,6 +61,17 @@ module.exports = {
         .catch(err => {
             res.status(500).json(err)
         })
+    },
+    findAllUsers: (req, res) => {
+        User.find({})
+        .then(allUsers => {
+            res.json(allUsers)
+        })
+        .catch(err => {
+            res.status(500).json(err)
+        })
     }
     
 }
+    
+
