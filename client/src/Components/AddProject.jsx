@@ -15,6 +15,10 @@ const AddProject = ({setLoggedIn, userId}) => {
         axios.get(`http://localhost:8000/api/users`)
             .then(res => {
                 setUser(res.data);
+                console.log(user)
+                console.log(Array.isArray(user))
+                console.log(user[0]) 
+
             })
             .catch(err => {
                 console.log(err);
@@ -79,7 +83,7 @@ const AddProject = ({setLoggedIn, userId}) => {
                     <input type="date" name="dueDate" id=""className='form-control' onChange={(e)=>{setDueDate(e.target.value)}} />
                 </div>
                 <div className='form-group mt-3'>
-                <select name="user" className='form-control' onChange={(e)=>{setUser(e.target.value)}} >
+                <select name="user" className='form-control' onChange={(e)=>{setUser([e.target.value])}} >
                 <option value="">Select user</option>
                 {user.map((user) => (
                         <option key={userId} value={user}>{user.firstName} {user.lastName}</option>

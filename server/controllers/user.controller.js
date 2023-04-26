@@ -16,7 +16,7 @@ module.exports = {
                 res.cookie("usertoken", userToken, {
                     httpOnly: true
                 }).json({message: "success", user: {
-                    _id: user.id,
+                    _id: newUser.id,
                 }});
             }
         } catch(err) {

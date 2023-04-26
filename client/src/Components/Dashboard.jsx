@@ -3,14 +3,22 @@ import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
 
 const Dashboard = (props) => {
+    console.log(props)
     const {projectList, setProjectList} = props;
     const { userId } = useParams();
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/projects`)
         .then((res) => {
-        setProjectList(res.data);
-        console.log(res.data.Project);
+            console.log(res.data.Project);
+
+            if (Array.isArray (res.data.Project)){
+
+                setProjectList(res.data.Project);
+            }else{
+                console.log("Error response data is not an array")
+            }
+
         })
         .catch((err) => {
         console.log(err);
@@ -32,16 +40,17 @@ const Dashboard = (props) => {
             </tr>
         </thead>
         <tbody>
-            {projectList.Project.map((projectList, index) => {
+            {
+            projectList.map((project, index) => {
                 return ( 
                     <tr key={index}>
-                    <td>{projectList.projectName}</td>
-                    <td>{projectList.tasks}</td>
-                    {/* <td>{projectList.user.firstName.join(", ")}</td> */}
-                    <td>{projectList.dueDate}</td>
-                    <td>{projectList.completed ? "True" : "False"}</td>
+                    <td>{project.projectName}</td>
+                    <td>{project.tasks}</td>
+                    {/* <td>{project.user.firstName.join(", ")}</td> */}
+                    <td>{project.dueDate}</td>
+                    <td>{project.completed ? "True" : "False"}</td>
                     <td> 
-                    <button className="btn btn-primary"><Link to={`projects/${projectList._id}`}>Edit</Link></button> 
+                    <button className="btn btn-primary"><Link to={`projects/${project._id}`}>Edit</Link></button> 
                     <button className="btn btn-danger">View</button> 
                     </td>
                 </tr> )
