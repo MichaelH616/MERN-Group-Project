@@ -4,8 +4,8 @@ const { authenticate } = require('../config/jwt.config');
 module.exports = (app) => { 
     app.post('/api/project', authenticate, ProjectController.createNewProject);
     app.get('/api/projects', authenticate, ProjectController.findAllProjects);
-    app.get('/api/project/:id', ProjectController.findOneProject);
+    app.get('/api/projects/:id', ProjectController.findOneProject);
     app.get('/api/projected/:member', ProjectController.findByMember);
     app.delete('/api/projects/:id', ProjectController.deleteProject);
-    app.put('/api/projects/:id', ProjectController.updateProject);
+    app.put('/api/project/:id', ProjectController.updateProject);
 }
