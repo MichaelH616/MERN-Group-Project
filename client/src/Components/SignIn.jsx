@@ -42,20 +42,20 @@ const SignIn = ({setUserId}) => {
                 <div className='w-100'>
                     <div className="card p-5" style={{ backgroundColor: 'white', border: '2px solid black', borderRadius: '10px', width: '500px', margin: '0auto' }}>
                     <h1 className='text-center mb-5'>Project Manager</h1>
-                    <h3 class="text-center">Login:</h3>
-                        <form class="col-md-6 mx-auto" onSubmit={submitHandler}>
+                    <h3 className="text-center">Login:</h3>
+                        <form className="col-md-6 mx-auto" onSubmit={submitHandler}>
 
-                            <div class="form-group">
+                            <div className="form-group">
                                 <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" name="email" required value={userInfo.email} onChange={changeHandler} />
+                                <input type="email" className="form-control" id="email" name="email" required value={userInfo.email} onChange={changeHandler} />
                             </div>
 
-                            <div class="form-group">
+                            <div className="form-group">
                                 <label for="password">Password:</label>
-                                <input type="password" class="form-control" id="password" name="password" required value={userInfo.password} onChange={changeHandler} />
+                                <input type="password" className="form-control" id="password" name="password" required value={userInfo.password} onChange={changeHandler} />
                             </div>
 
-                            <button type="submit" class="btn btn-primary mt-3">Sign in</button>
+                            <button type="submit" className="btn btn-primary mt-3">Sign in</button>
 
                         </form>
 

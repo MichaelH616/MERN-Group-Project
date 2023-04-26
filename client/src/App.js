@@ -8,11 +8,12 @@ import SignIn from './Components/SignIn';
 function App() {
 
   const[userId, setUserId] = useState(null);
+  const [projectList, setProjectList] = useState([]); // [{}
   
   return (
     <div>
       <Routes>
-      <Route path="/projects" element={<Dashboard userId={userId}/>} />
+      <Route path="/projects" element={<Dashboard projectList={projectList} setProjectList={setProjectList} userId={userId}/>} />
         <Route path="/project" element={<AddProject userId={userId}/>} />
         <Route path ="/" default element={<RegisterForm setUserId={setUserId}/>}/>
         <Route path = "/signin" element = {<SignIn setUserId={setUserId}/>}/>
