@@ -5,6 +5,7 @@ import AddProject from './Components/AddProject';
 import RegisterForm from './Components/RegisterForm';
 import SignIn from './Components/SignIn';
 import EditProject from './Components/EditProject';
+import ViewOne from './Components/ViewOne';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/projects" element={<Dashboard projectList={projectList} setProjectList={setProjectList} userId={userId}/>} />
         <Route path="/project" element={<AddProject userId={userId}/>} />
         <Route path="/project/:id" element={<EditProject projectList={projectList} setProjectList={setProjectList}/>}/>
+        <Route path="/projects/:id" element={<ViewOne projectList={projectList} setProjectList={setProjectList}/>}/>
         <Route path ="/" default element={<RegisterForm setUserId={setUserId}/>}/>
         <Route path = "/signin" element = {<SignIn setUserId={setUserId}/>}/>
         <Route path="*" element={<h1>404 - Page Not Found</h1>}/>
