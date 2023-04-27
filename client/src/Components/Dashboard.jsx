@@ -15,6 +15,8 @@ const Dashboard = (props) => {
         return userId === projectOwnerId;
     }
 
+    const [user, setUser] = useState({});
+
     useEffect(() => {
         axios.get((`http://localhost:8000/api/projects`), {withCredentials:true})
         .then((res) => {
@@ -32,7 +34,6 @@ const Dashboard = (props) => {
         console.log(err);
         });
     }, []);
-    
 
 
     const removeFromDOM = id => {

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import background from '../images/pexels-fauxels-3183183.jpg'
 
-const SignIn = ({setUserId}) => {
+const SignIn = ({ setUserId }) => {
 
     const navigate = useNavigate();
 
@@ -30,9 +30,9 @@ const SignIn = ({setUserId}) => {
                 console.log(err)
                 if (err.response && err.response.status === 400) {
                     alert("Bad Request: " + err.response.data.message);
-                  } else if (err.response && err.response.data && err.response.data.error) {
+                } else if (err.response && err.response.data && err.response.data.error) {
                     setErrMsg(err.response.data.error);
-                  }
+                }
             }
             )
     }
@@ -51,8 +51,8 @@ const SignIn = ({setUserId}) => {
             <div className='row'>
                 <div className='w-100'>
                     <div className="card p-5" style={{ backgroundColor: 'white', border: '2px solid black', borderRadius: '10px', width: '500px', margin: '0auto' }}>
-                    <h1 className='text-center mb-5'>Project Manager</h1>
-                    <h3 className="text-center">Login:</h3>
+                        <h1 className='text-center mb-5'>Project Manager</h1>
+                        <h3 className="text-center">Login:</h3>
                         <form className="col-md-6 mx-auto" onSubmit={submitHandler}>
 
                             <div className="form-group">
@@ -76,7 +76,7 @@ const SignIn = ({setUserId}) => {
                 </div>
             </div>
         </div>
-                    )
+    )
 }
 
-                    export default SignIn
+export default SignIn
