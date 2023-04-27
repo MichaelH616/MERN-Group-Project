@@ -105,7 +105,8 @@ const AddProject = ({ setLoggedIn}) => {
 
                             <input type="text" name="tasks" className="form-control" onChange={(e) => {handleTaskChange(e, idx) }} />
                             {
-                                task.length < 2 && task != '' && tasks.length > 0 ? <p className='text-danger'>Tasks must be at least 2 characters.</p> : ""}
+                                tasks.length < 2 && tasks !== ''? <p className='text-danger'>Tasks must be at least 2 characters.</p> : ""
+                            }
                         </div>
                     ))}
                     <button onClick={addTask} type="button">Add Tasks</button>
@@ -128,7 +129,7 @@ const AddProject = ({ setLoggedIn}) => {
                     <label htmlFor="" className="form-label">Completed?</label>
                     <input type="checkbox" name="completedStatus" onChange={handleProjectStatus}></input>
                 </div>
-                <div className='form-group mt-3'>
+                {/* <div className='form-group mt-3'>
                     <select name="user" className='form-control' onChange={(e) => { setSelectedOption([e.target.value]) }} >
                         <option value={selectedOption}>Select user</option>
                         {user.map((user) => (
@@ -136,7 +137,7 @@ const AddProject = ({ setLoggedIn}) => {
                         ))
                         }
                     </select>
-                </div>
+                </div> */}
                 <br>
                 </br>
                 <input className="submit-input" type="submit" value="Create Project" />
