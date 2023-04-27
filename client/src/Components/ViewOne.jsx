@@ -6,6 +6,8 @@ import Navbar from './Navbar';
 const ViewOne = () => {
     const [projectList, setProjectList] = useState({});
     const { id } = useParams(); 
+    const userId = window.localStorage.getItem("userID")
+    const [user, setUser] = useState({});
     const navigate = useNavigate();
 
     const date = new Date(projectList.dueDate);
@@ -20,7 +22,19 @@ const ViewOne = () => {
             })
             .catch(err => console.log(err));
     }, []);
-console.log(id)
+
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/users/${projectList.userOwner}`)
+            .then(res => {
+                console.log(res.data);
+                setUser(res.data);
+            })
+            .catch(err => console.log(err));
+    }   , [projectList.userOwner]);
+
+
+
     return (
         <div>
             < Navbar />
@@ -28,7 +42,8 @@ console.log(id)
             <p>Description: {projectList.description}</p>
             <p>Tasks: {projectList.tasks && projectList.tasks.join(', ')}</p>
             <p>Due Date: {formattedDate}</p>
-            <p>Completed: {projectList.completedStatus}</p>
+            <p>Completed: {projectList.completedStatus ? 'True':'False'}</p>
+            <p>Created By: {user.firstName} {user.lastName} </p>
 
 
         </div>
