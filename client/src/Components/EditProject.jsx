@@ -80,7 +80,7 @@ const EditProject = () => {
 
     const handleProjectStatus = (e) => {
         console.log(e.target.value);
-        console.log(e.target.name)
+        console.log(e.target.checked)
         if(e.target.name === 'completedStatus') {
             setCompletedStatus(!completedStatus)
         } else {
@@ -91,9 +91,11 @@ const EditProject = () => {
 
 
     useEffect(() => {
-        axios.get((`http://localhost:8000/api/project/${id}`), { withCredentials: true })
+        axios.get((`http://localhost:8000/api/projects/${id}`), { withCredentials: true })
             .then(res => {
                 setProjectList(res.data);
+                setCompletedStatus(res.data.completedStatus)
+                console.log(res.data.completedStatus)
             })
             .catch(err => {
                 console.log(err);

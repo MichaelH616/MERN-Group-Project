@@ -7,7 +7,7 @@ import background from '../images/pexels-ylanite-koppens-796602.jpg'
 const Dashboard = (props) => {
     console.log(props)
     const {projectList, setProjectList} = props;
-    const { userId } = useParams();
+    const userId = window.localStorage.getItem("userId")
 
     useEffect(() => {
         axios.get((`http://localhost:8000/api/projects`), {withCredentials:true})
@@ -64,7 +64,7 @@ const Dashboard = (props) => {
                 return ( 
                     <tr key={index}>
                     <td>{project.projectName}</td>
-                    <td>{project.tasks}</td>
+                    <td>{project.tasks.join(', ')}</td>
                     <td>{formattedDate}</td>
                     <td>{project.completedStatus ? 'True':'False'}</td>
                     <td> 

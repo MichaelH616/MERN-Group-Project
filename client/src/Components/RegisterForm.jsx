@@ -101,6 +101,7 @@ const RegisterForm = ({setUserId}) => {
         } else {
 
           const userId = res.data.user._id;
+          window.localStorage.setItem("userID", res.data.user._id)
           setUserId = userId
           setPwd("");
           setFirstName("");
