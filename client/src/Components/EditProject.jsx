@@ -5,13 +5,6 @@ import Navbar from './Navbar'
 import background from '../images/pexels-karol-d-323645.jpg';
 
 const EditProject = () => {
-    // const [projectList, setProjectList] = useState([]);
-    // const [projectName, setProjectName] = useState("");
-    // const [tasks, setTasks] = useState("");
-    // const [description, setDescription] = useState("");
-    // const [dueDate, setDueDate] = useState("");
-    // const [user, setUser] = useState([]);
-    // const [selectedOption, setSelectedOption] = useState("");
 
     const [projectList, setProjectList] = useState({});
     const [projectNameError, setProjectNameError] = useState('');
@@ -139,15 +132,6 @@ const EditProject = () => {
                         <label htmlFor="" className="form-label">Completed?</label>
                         <input type="checkbox" name="completedStatus" value={projectList.completedStatus} checked={projectList.completedStatus} onChange={handleProjectStatus}></input>
                     </div>
-                    {/* <div className='form-group mt-3'>
-                <select name="user" className='form-control' onChange={(e) => { setSelectedOption([e.target.value]) }} >
-                    <option value={selectedOption}>Select user</option>
-                    {user.map((user) => (
-                        <option key={userId} value={user}>{user.firstName} {user.lastName}</option>
-                    ))
-                    }
-                </select>
-            </div> */}
                     <br>
                     </br>
                     <input className="submit-input" type="submit" value="Update Project" />
