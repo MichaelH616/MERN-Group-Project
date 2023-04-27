@@ -9,7 +9,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
 
-const RegisterForm = ({setUserId}) => {
+const RegisterForm = ({ setUserId }) => {
 
   const userRef = useRef();
   const errRef = useRef();
@@ -36,6 +36,12 @@ const RegisterForm = ({setUserId}) => {
 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
+
+  const [isShown, setIsShown] = useState(false);
+
+  const togglePassword = () => {
+    setIsShown((isShown) => !isShown);
+  }
 
   const navigate = useNavigate();
 
@@ -192,7 +198,7 @@ const RegisterForm = ({setUserId}) => {
 
               <label htmlFor="password">Password:</label>
               <input
-                type="password"
+                type={isShown ? "text" : "password"}
                 id="password"
                 name="password"
                 onChange={(e) => setPwd(e.target.value)}
@@ -211,7 +217,7 @@ const RegisterForm = ({setUserId}) => {
                 Confirm Password:
               </label>
               <input
-                type="password"
+                type={isShown ? "text" : "password"}
                 id="confirm_pwd"
                 onChange={(e) => setMatchPwd(e.target.value)}
                 required
@@ -220,6 +226,16 @@ const RegisterForm = ({setUserId}) => {
                 onFocus={() => setMatchFocus(true)}
                 onBlur={() => setMatchFocus(false)}
               />
+
+              <div className="checkbox-container my-3">
+                <label htmlFor="checkbox">Show password?</label>
+                <input
+                  id="checkbox"
+                  type="checkbox"
+                  checked={isShown}
+                  onChange={togglePassword}
+                />
+              </div>
 
               <button disabled={!validFirstName || !validLastName || !validEmail || !validPwd || !validMatch ? true : false} className="mt-4"> Sign Up</button>
             </form>

@@ -63,9 +63,9 @@ const Dashboard = (props) => {
                 const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
                 return ( 
                     <tr key={index}>
-                    <td>{project.projectName}</td>
-                    <td>{project.tasks.join(', ')}</td>
-                    <td>{formattedDate}</td>
+                    <td className={`${project.completedStatus ? "text-decoration-line-through":""}`}>{project.projectName}</td>
+                    <td className={`${project.completedStatus ? "text-decoration-line-through":""}`}>{project.tasks.join(', ')}</td>
+                    <td className={`${project.completedStatus ? "text-decoration-line-through":""}`}>{formattedDate}</td>
                     <td>{project.completedStatus ? 'True':'False'}</td>
                     <td> 
 
