@@ -14,6 +14,7 @@ const AddProject = ({ setLoggedIn}) => {
     const [selectedOption, setSelectedOption] = useState("");
     const userId = window.localStorage.getItem("userID")
     const navigate = useNavigate();
+    const [taskError, setTaskError] = useState("");
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/users`)
@@ -78,6 +79,9 @@ const AddProject = ({ setLoggedIn}) => {
     }
 
     const handleTaskChange = (e, idx) => {
+        e.target.value.length < 2? 
+        setTaskError('Task name must be at least 2 characters'):
+        setTaskError("");
         const {value} = e.target;
         const task = tasks ;
         task[idx] = value;
@@ -97,16 +101,18 @@ const AddProject = ({ setLoggedIn}) => {
                     <input type="text" name='setProjectName' className="form-control" onChange={(e) => { setProjectName(e.target.value) }} />
                 </div>
                 <div className='form-group mt-3'>
-                    
+                {
+                                taskError ? <p className='text-danger'>{taskError}</p> : ""
+                                
+                                // tasks && tasks.length < 2 ? <p className='text-danger'>Tasks must be at least 2 characters.</p> : ""
+                }
                     <label htmlFor="" className='form-label'>Tasks : </label>
                     {
                     tasks.map((task, idx) => (
                         <div key={idx}>
 
                             <input type="text" name="tasks" className="form-control" onChange={(e) => {handleTaskChange(e, idx) }} />
-                            {
-                                tasks.length < 2 && tasks !== ''? <p className='text-danger'>Tasks must be at least 2 characters.</p> : ""
-                            }
+                            
                         </div>
                     ))}
                     <button onClick={addTask} type="button">Add Tasks</button>
