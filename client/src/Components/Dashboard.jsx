@@ -54,6 +54,7 @@ const Dashboard = (props) => {
     <div>
         <Navbar/>
         <div className="container-fluid vh-100" style={{ backgroundImage: `url(${background})`, backgroundSize: "cover" }}>
+        <h2 className="page-title-dash">Welcome to the Dashboard</h2>
         <table className="table table-hover table-striped">
         <thead>
             <tr>
