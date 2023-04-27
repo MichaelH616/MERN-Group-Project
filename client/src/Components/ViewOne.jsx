@@ -26,7 +26,7 @@ console.log(id)
             < Navbar />
             <h3>Project Name: {projectList.projectName}</h3>
             <p>Description: {projectList.description}</p>
-            <p>Tasks: {projectList.tasks}</p>
+            <p>Tasks: {projectList.tasks.join(', ')}</p>
             <p>Due Date: {formattedDate}</p>
             <p>Completed: {projectList.completedStatus}</p>
 

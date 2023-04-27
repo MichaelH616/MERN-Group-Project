@@ -17,6 +17,7 @@ const Navbar= () =>{
                     email:"",
                     password:"",
                 }) 
+                window.localStorage.removeItem("userID")
                 Navigate("/");
             })
     }

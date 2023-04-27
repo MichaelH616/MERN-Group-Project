@@ -18,10 +18,15 @@ const ProjectSchema = new mongoose.Schema({
         type: Boolean
         // required: [true, "Is the project completed?"]
     },
-    tasks: {
+    tasks: [{
         type: String,
         // required: [true, "Project tasks are required"]
-    }
+    }],
+    userOwner:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
+        required: true},
+
 })
 
 module.exports = mongoose.model("Project2", ProjectSchema);

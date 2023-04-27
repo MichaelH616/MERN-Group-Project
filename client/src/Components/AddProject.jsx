@@ -3,15 +3,16 @@ import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 import Navbar from './Navbar';
 
-const AddProject = ({ setLoggedIn, userId }) => {
+const AddProject = ({ setLoggedIn}) => {
     const [projectList, setProjectList] = useState([]);
     const [projectName, setProjectName] = useState("");
-    const [tasks, setTasks] = useState("");
+    const [tasks, setTasks] = useState([]);
     const [description, setDescription] = useState("");
     const [dueDate, setDueDate] = useState("");
     const [completedStatus, setCompletedStatus] = useState(false);
     const [user, setUser] = useState([]);
     const [selectedOption, setSelectedOption] = useState("");
+    const userId = window.localStorage.getItem("userID")
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -37,6 +38,8 @@ const AddProject = ({ setLoggedIn, userId }) => {
             dueDate,
             user,
             completedStatus,
+            userOwner: userId
+            
         },
             { withCredentials: true }
         )
@@ -45,11 +48,12 @@ const AddProject = ({ setLoggedIn, userId }) => {
                 console.log(res.data);
                 setProjectList([...projectList, res.data]);
                 setProjectName("");
-                setTasks("");
+                setTasks([]);
                 setDescription("");
                 setDueDate("");
                 setSelectedOption("");
                 setUser([]);
+                alert("project created")
             })
             .catch((err) => {
                 console.log(err);
@@ -68,6 +72,19 @@ const AddProject = ({ setLoggedIn, userId }) => {
         console.log(completedStatus)
     }
 
+    const addTask = () => {
+        setTasks([...tasks,""])
+
+    }
+
+    const handleTaskChange = (e, idx) => {
+        const {value} = e.target;
+        const task = tasks ;
+        task[idx] = value;
+        setTasks(task)
+    }
+
+    console.log(tasks)
     return (
         <div>
             <Navbar />
@@ -80,10 +97,18 @@ const AddProject = ({ setLoggedIn, userId }) => {
                     <input type="text" name='setProjectName' className="form-control" onChange={(e) => { setProjectName(e.target.value) }} />
                 </div>
                 <div className='form-group mt-3'>
-                    {
-                        tasks && tasks.length < 3 ? <p className='text-danger'>Tasks must be at least 2 characters.</p> : ""}
+                    
                     <label htmlFor="" className='form-label'>Tasks : </label>
-                    <input type="text" name="tasks" className="form-control" onChange={(e) => { setTasks(e.target.value) }} />
+                    {
+                    tasks.map((task, idx) => (
+                        <div key={idx}>
+
+                            <input type="text" name="tasks" className="form-control" onChange={(e) => {handleTaskChange(e, idx) }} />
+                            {
+                                task.length < 2 && task != '' && tasks.length > 0 ? <p className='text-danger'>Tasks must be at least 2 characters.</p> : ""}
+                        </div>
+                    ))}
+                    <button onClick={addTask} type="button">Add Tasks</button>
                 </div>
                 <div className='form-group mt-3'>
                     {
