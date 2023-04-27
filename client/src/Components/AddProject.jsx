@@ -92,7 +92,7 @@ const AddProject = ({ setLoggedIn}) => {
     return (
         <div>
             <Navbar />
-            <h1>Add a Project</h1>
+            <h2 className="page-title-add">Add a Project</h2>
             <form action="" className="form col-md-4 mx-auto" onSubmit={handleSubmit}>
                 <div className='form-group mt-3'>
                     {
@@ -115,7 +115,7 @@ const AddProject = ({ setLoggedIn}) => {
                             
                         </div>
                     ))}
-                    <button onClick={addTask} type="button">Add Tasks</button>
+                    <button className='task-btn' onClick={addTask} type="button">Add Tasks</button>
                 </div>
                 <div className='form-group mt-3'>
                     {

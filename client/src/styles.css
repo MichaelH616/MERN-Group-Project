@@ -33,3 +33,56 @@
     gap: 1rem;
 }
 
+.table {
+    border: 2px solid;
+    width: 100%;
+}
+.page-title-dash {
+    font-size: xx-large;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.btn {
+    color: black;
+    background-color: gray;
+    border: darkgray;
+}
+
+.page-title-add {
+    font-size: xx-large;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.task-btn {
+    color: black;
+    background-color: gray;
+    border: darkgray;
+    border-radius: 5px;
+    margin-left: 1rem;
+}
+
+.submit-input {
+    color: black;
+    background-color: gray;
+    border: darkgray;
+    border-radius: 5px;
+    margin-left: 1rem;
+}
+
+.page-title-edit {
+    font-size: xx-large;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.page-title-view {
+    font-size: xx-large;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}

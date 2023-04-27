@@ -105,7 +105,7 @@ const EditProject = () => {
     return (
         <div>
             <Navbar />
-            <h1>Edit a Project</h1>
+            <h2 className="page-title-edit">Edit a Project</h2>
             <form action="" className="form col-md-4 mx-auto" onSubmit={handleSubmit}>
                 <div className='form-group mt-3'>
                     {
