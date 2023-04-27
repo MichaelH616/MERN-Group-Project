@@ -15,7 +15,7 @@ const ViewOne = () => {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/projects/${id}`)
+        axios.get((`http://localhost:8000/api/projects/${id}`), {withCredentials:true})
             .then(res => {
                 console.log(res.data);
                 setProjectList(res.data);
@@ -25,7 +25,7 @@ const ViewOne = () => {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/users/${projectList.userOwner}`)
+        axios.get(`http://localhost:8000/api/users/${projectList.userOwner}`, {withCredentials:true})
             .then(res => {
                 console.log(res.data);
                 setUser(res.data);
@@ -48,7 +48,6 @@ const ViewOne = () => {
                     <p>Created By: {user.firstName} {user.lastName} </p>
                 </div>
             </div>
-
         </div>
     );
 }

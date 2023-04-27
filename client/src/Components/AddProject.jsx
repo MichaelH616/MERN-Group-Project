@@ -14,6 +14,7 @@ const AddProject = ({ setLoggedIn}) => {
     const [selectedOption, setSelectedOption] = useState("");
     const userId = window.localStorage.getItem("userID")
     const navigate = useNavigate();
+    const [taskError, setTaskError] = useState("");
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/users`)
@@ -78,6 +79,9 @@ const AddProject = ({ setLoggedIn}) => {
     }
 
     const handleTaskChange = (e, idx) => {
+        e.target.value.length < 2? 
+        setTaskError('Task name must be at least 2 characters'):
+        setTaskError("");
         const {value} = e.target;
         const task = tasks ;
         task[idx] = value;
@@ -97,15 +101,18 @@ const AddProject = ({ setLoggedIn}) => {
                     <input type="text" name='setProjectName' className="form-control" onChange={(e) => { setProjectName(e.target.value) }} />
                 </div>
                 <div className='form-group mt-3'>
-                    
+                {
+                                taskError ? <p className='text-danger'>{taskError}</p> : ""
+                                
+                                // tasks && tasks.length < 2 ? <p className='text-danger'>Tasks must be at least 2 characters.</p> : ""
+                }
                     <label htmlFor="" className='form-label'>Tasks : </label>
                     {
                     tasks.map((task, idx) => (
                         <div key={idx}>
 
                             <input type="text" name="tasks" className="form-control" onChange={(e) => {handleTaskChange(e, idx) }} />
-                            {
-                                task.length < 2 && task != '' && tasks.length > 0 ? <p className='text-danger'>Tasks must be at least 2 characters.</p> : ""}
+                            
                         </div>
                     ))}
                     <button className='task-btn' onClick={addTask} type="button">Add Tasks</button>
@@ -128,7 +135,7 @@ const AddProject = ({ setLoggedIn}) => {
                     <label htmlFor="" className="form-label">Completed?</label>
                     <input type="checkbox" name="completedStatus" onChange={handleProjectStatus}></input>
                 </div>
-                <div className='form-group mt-3'>
+                {/* <div className='form-group mt-3'>
                     <select name="user" className='form-control' onChange={(e) => { setSelectedOption([e.target.value]) }} >
                         <option value={selectedOption}>Select user</option>
                         {user.map((user) => (
@@ -136,7 +143,7 @@ const AddProject = ({ setLoggedIn}) => {
                         ))
                         }
                     </select>
-                </div>
+                </div> */}
                 <br>
                 </br>
                 <input className="submit-input" type="submit" value="Create Project" />
