@@ -122,7 +122,9 @@ const RegisterForm = ({ setUserId }) => {
       })
       .catch((err) => {
         console.log(err);
-        if (err.response && err.response.data && err.response.data.error) {
+        if (err.response && err.response.status === 400) {
+          alert("Bad Request: " + err.response.data.message);
+        } else if (err.response && err.response.data && err.response.data.error) {
           setErrMsg(err.response.data.error);
         }
       })
