@@ -7,7 +7,13 @@ import background from '../images/pexels-ylanite-koppens-796602.jpg'
 const Dashboard = (props) => {
     console.log(props)
     const {projectList, setProjectList} = props;
-    const userId = window.localStorage.getItem("userId")
+    const userId = window.localStorage.getItem("userID")
+    
+    const canEdit = (projectOwnerId) => {
+        console.log(userId)
+        console.log(projectOwnerId)
+        return userId === projectOwnerId;
+    }
 
     useEffect(() => {
         axios.get((`http://localhost:8000/api/projects`), {withCredentials:true})
@@ -41,6 +47,8 @@ const Dashboard = (props) => {
 
     }
 
+
+
     console.log(projectList)
     return (
     <div>
@@ -68,10 +76,17 @@ const Dashboard = (props) => {
                     <td>{formattedDate}</td>
                     <td>{project.completedStatus ? 'True':'False'}</td>
                     <td> 
+                    {canEdit(project.userOwner)  ? (
 
                     <button className="btn btn-warning"><Link to={`/project/${project._id}`}>Edit</Link></button> 
+                    ):null}
                     <button className="btn btn-info"><Link to={`/projects/${project._id}`}>View</Link></button>
-                    <button className="btn btn-danger" onClick={(e)=>{removeFromDOM(project._id)}}>Delete</button>
+                    {canEdit(project.userOwner) ? (
+
+                        <button className="btn btn-danger" onClick={(e)=>{removeFromDOM(project._id)}}>Delete</button>
+                        ) : null
+                    }
+                    
                     </td>
                 </tr> )
             })
