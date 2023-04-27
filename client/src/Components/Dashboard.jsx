@@ -36,7 +36,7 @@ const Dashboard = (props) => {
 
 
     const removeFromDOM = id => {
-        axios.delete(`http://localhost:8000/api/projects/${id}`)
+        axios.delete(`http://localhost:8000/api/projects/${id}`, {withCredentials:true})
             .then((res) => {
                 console.log(res.data)
                 setProjectList(projectList.filter(project => project._id !== id));
@@ -74,7 +74,7 @@ const Dashboard = (props) => {
                     <td className={`${project.completedStatus ? "text-decoration-line-through":""}`}>{project.projectName}</td>
                     <td className={`${project.completedStatus ? "text-decoration-line-through":""}`}>{project.tasks.join(', ')}</td>
                     <td className={`${project.completedStatus ? "text-decoration-line-through":""}`}>{formattedDate}</td>
-                    <td>{project.completedStatus ? 'True':'False'}</td>
+                    <td>{project.completedStatus ? 'Yes':'No'}</td>
                     <td> 
                     {canEdit(project.userOwner)  ? (
 
