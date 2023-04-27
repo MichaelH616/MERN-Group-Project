@@ -12,6 +12,8 @@ const SignIn = ({setUserId}) => {
         password: ""
     })
 
+    const [errMsg, setErrMsg] = useState("");
+
     const submitHandler = (e) => {
         e.preventDefault();
         axios.post('http://localhost:8000/api/users/login', userInfo, { withCredentials: true })
@@ -24,8 +26,15 @@ const SignIn = ({setUserId}) => {
                 // setLoggedIn(true);
                 navigate("/projects")
             })
-            .catch(err => console.log(err))
-
+            .catch(err => {
+                console.log(err)
+                if (err.response && err.response.status === 400) {
+                    alert("Bad Request: " + err.response.data.message);
+                  } else if (err.response && err.response.data && err.response.data.error) {
+                    setErrMsg(err.response.data.error);
+                  }
+            }
+            )
     }
 
     const changeHandler = (e) => {
