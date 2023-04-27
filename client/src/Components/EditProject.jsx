@@ -63,7 +63,7 @@ const EditProject = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!projectDateError && !projectDescriptionError && !projectNameError && !projectTaskError) {
-            axios.put(`http://localhost:8000/api/projects/${id}`, projectList,
+            axios.put(`http://localhost:8000/api/project/${id}`, projectList,
 
                 { withCredentials: true }
             )
@@ -80,13 +80,13 @@ const EditProject = () => {
 
     const handleProjectStatus = (e) => {
         console.log(e.target.value);
-        console.log(e.target.checked)
+        console.log(e.target.name)
         if(e.target.name === 'completedStatus') {
-            setCompletedStatus(!completedStatus)
+            setProjectList({...projectList, completedStatus:!projectList.completedStatus})
         } else {
-            setCompletedStatus(completedStatus)
+            setProjectList({...projectList, [e.target.name]:e.target.value})
         }
-        console.log(completedStatus)
+        console.log(projectList.completedStatus)
     }
 
 
@@ -135,7 +135,7 @@ const EditProject = () => {
                 </div>
                 <div className='form-group mt-3'>
                     <label htmlFor="" className="form-label">Completed?</label>
-                    <input type="checkbox" name="completedStatus" value={completedStatus} onChange={handleProjectStatus}></input>
+                    <input type="checkbox" name="completedStatus" value={projectList.completedStatus} checked={projectList.completedStatus} onChange={handleProjectStatus}></input>
                 </div>
                 {/* <div className='form-group mt-3'>
                 <select name="user" className='form-control' onChange={(e) => { setSelectedOption([e.target.value]) }} >

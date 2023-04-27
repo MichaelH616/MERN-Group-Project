@@ -65,9 +65,9 @@ const AddProject = ({ setLoggedIn}) => {
         console.log(e.target.value);
         console.log(e.target.name)
         if(e.target.name === 'completedStatus') {
-            setCompletedStatus(!completedStatus)
+            setProjectList({...projectList, completedStatus:!projectList.completedStatus})
         } else {
-            setCompletedStatus(completedStatus)
+            setProjectList({...projectList, [e.target.name]:e.target.value})
         }
         console.log(completedStatus)
     }
